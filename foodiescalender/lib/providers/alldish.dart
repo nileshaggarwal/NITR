@@ -21,12 +21,4 @@ class DishProvider with ChangeNotifier {
     }
     notifyListeners();
   }
-
-  List<DishItem> fetchSelected() {
-    final List<DishItem> shortList = [];
-    _dishList.forEach((element) {
-      // shortList.where((element),);
-    });
-    return shortList;
-  }
 }

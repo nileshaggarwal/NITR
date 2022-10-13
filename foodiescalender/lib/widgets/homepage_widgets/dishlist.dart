@@ -11,7 +11,11 @@ class DishList extends StatelessWidget {
   Widget build(BuildContext context) {
     final dishData = Provider.of<DishProvider>(context, listen: false);
     final dishes = dishData.items;
-    return ListView.builder(
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.85,
+      ),
       itemCount: dishes.length,
       itemBuilder: (context, index) => ChangeNotifierProvider.value(
         value: dishes[index],

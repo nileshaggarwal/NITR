@@ -8,6 +8,7 @@ class CardDish extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     final dishItem = Provider.of<DishItem>(context, listen: false);
     return GestureDetector(
       onTap: () {
@@ -15,25 +16,40 @@ class CardDish extends StatelessWidget {
             .pushNamed(DishDetails.routeName, arguments: dishItem.id);
       },
       child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         elevation: 2,
-        child: ListTile(
-          leading: Hero(
-            tag: dishItem.id!,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                dishItem.image!.url!,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Hero(
+              tag: dishItem.id!,
+              child: SizedBox(
+                height: screenSize.height * 0.2,
+                width: screenSize.width,
+                child: Image.network(
+                  dishItem.image!.url!,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          title: Text(dishItem.title!),
-          subtitle: Text(
-            dishItem.category!,
-            style: TextStyle(
-              color: (dishItem.category!) == 'veg'
-                  ? const Color.fromARGB(156, 0, 172, 0)
-                  : const Color.fromARGB(156, 255, 0, 0),
+            Text(
+              dishItem.title!,
+              maxLines: 1,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-          ),
+            Text(
+              dishItem.category!,
+              style: TextStyle(
+                color: (dishItem.category!) == 'veg'
+                    ? const Color.fromARGB(156, 0, 172, 0)
+                    : const Color.fromARGB(156, 255, 0, 0),
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
       ),
     );

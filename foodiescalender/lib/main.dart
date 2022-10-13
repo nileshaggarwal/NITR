@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodiescalender/providers/alldish.dart';
-import 'package:foodiescalender/screens/category.dart';
 import 'package:foodiescalender/screens/dish_details.dart';
 import 'package:foodiescalender/screens/homepage.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.deepOrange,
         ),
-        home: const CatrgeryPage(),
+        home: const HomePage(),
         routes: {
           HomePage.routeName: (context) => const HomePage(),
           DishDetails.routeName: ((context) => const DishDetails()),
